@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+<!--{% block content %}
+{% if user.is_authenticated %}
+ Hi {{ user.username}}!
+    <p> <a href="{% url 'logout' %}">Logout</a></p>
+{% else %}
+    <p>You are not logged in </p>
+<a href="{% url 'login' %}">login</a>
+{% endif %}
+{% endblock %} -->
+
+<div>
+
+<h1>Search Function</h1>
+<form action = "{% url 'search_view' %}" method = "GET" value="{{request.GET.q}}">
+
+    Search <input type ="text" name="q" value ="{{request.GET.q}}" placeholder="Search pages"/>
+
+    <input type ="submit" name ="submit" value="Search"/>
+
+</form>
+
+{% if submitbutton == 'Search' and request.GET.q != '' %}
+{% if results %}
+<h1>Results for <b> {{ request.GET.q }} </b></h1>
+<br/> <br/>
+
+{% for result in results %}
+
+{{result.name}}
+<br/>
+
+{{result.page_content}}
+<br/>
+
+{% endfor %}
+{% else %}
+No search results for this query, Displaying all the pages
+
+{% endif %}
+{% endif %}
+    </div>
+
+</body>
+</html>

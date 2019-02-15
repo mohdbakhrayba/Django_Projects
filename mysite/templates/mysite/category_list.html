@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>category list</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block content %}
+<h1> List of all categories
+    <a href ="{% url 'category_create' %}">[ Create ]</a></h1>
+
+
+{%if category_list %}
+    <ul>
+        {% for category in category_list %}
+        <li><a href="{{ category.get_absolute_url }}">{{ category.name }} </a>
+            <a href="{% url 'category_update' category.id  %}">[ Modify ] </a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p> No Categories were found</p>
+    {% endif %}
+
+    {% endblock %}
+</body>
+</html>

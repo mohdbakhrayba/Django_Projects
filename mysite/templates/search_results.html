@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search page</title>
+</head>
+<body>
+{% extends "base.html" %}
+
+{% block title %}<title>Wiki Search Page</title>{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+
+    <p>The wiki has the following matching records:</p>
+
+    {% if results %}
+    <h1>Results for <b>{{ request.GET.q }}</b></h1>
+    <br/><br/>
+
+        {% for result in results %}
+
+        {{result.title}}
+    <br/>
+
+{       {result.content}}
+    <br/>
+
+        {% endfor %}
+
+    {% else %}
+        No search results for this query
+
+    {% endif %}
+
+
+{% endblock %}
+
+
+</body>
+</html>
